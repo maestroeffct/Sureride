@@ -7,14 +7,13 @@ import {
   StatusBar,
 } from 'react-native';
 import React from 'react';
-import Screen from '../../../../components/Screen';
 // import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
 import Icon from 'react-native-remix-icon';
-
-import CarTypeCard from '../../../../components/Rental/CarTypeCard';
-import FeaturedCarCard from '../../../../components/Rental/FeaturedCarCard';
-import CategoryFilter from '../../../../components/Rental/CategoryFilter';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import CategoryFilter from '@/core/components/Rental/CategoryFilter';
+import CarTypeCard from '@/core/components/Rental/CarTypeCard';
+import FeaturedCarCard from '@/core/components/Rental/FeaturedCarCard';
 
 const CarRental = () => {
   const carTypes = [
@@ -22,19 +21,19 @@ const CarRental = () => {
       id: '1',
       name: 'Sport',
       count: 35,
-      image: require('../../../../../assets/images/rental/sport.jpg'),
+      image: require('@/assets/images/rental/sport.jpg'),
     },
     {
       id: '2',
       name: 'Electric',
       count: 35,
-      image: require('../../../../../assets/images/rental/electric_car.jpg'),
+      image: require('@/assets/images/rental/electric_car.jpg'),
     },
     {
       id: '3',
       name: 'Classic',
       count: 35,
-      image: require('../../../../../assets/images/rental/classic_car.jpg'),
+      image: require('@/assets/images/rental/classic_car.jpg'),
     },
   ];
 
@@ -45,7 +44,7 @@ const CarRental = () => {
       price: 560,
       rating: 5.0,
       type: 'Hybrid',
-      image: require('../../../../../assets/images/rental/featured1.jpg'),
+      image: require('@/assets/images/rental/featured1.jpg'),
     },
     {
       id: '2',
@@ -53,7 +52,7 @@ const CarRental = () => {
       price: 560,
       rating: 5.0,
       type: 'Hybrid',
-      image: require('../../../../../assets/images/rental/featured1.jpg'),
+      image: require('@/assets/images/rental/featured1.jpg'),
     },
   ];
 
@@ -61,7 +60,7 @@ const CarRental = () => {
   const topInset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
 
   return (
-    <Screen padded={false} statusBarStyle="dark-content">
+    <ScreenWrapper padded={false} statusBarStyle="dark-content">
       <ScrollView
         style={[styles.container, { paddingTop: topInset }]}
         showsVerticalScrollIndicator={false}
@@ -114,7 +113,7 @@ const CarRental = () => {
 
         <View style={{ height: 20 }} />
       </ScrollView>
-    </Screen>
+    </ScreenWrapper>
   );
 };
 

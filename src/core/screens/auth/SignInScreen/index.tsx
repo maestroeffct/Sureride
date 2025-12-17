@@ -7,20 +7,15 @@ import {
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-
-import Screen from '../../../components/Screen';
-import { CustomInput } from '../../../components/CustomInput';
-import { PrimaryButton } from '../../../components/PrimaryButton';
-
-import { AuthStackParamList } from '../../../types/navigation';
-import { useThemeColors } from '../../../theme/colors';
+import { useThemeColors } from '@/core/theme/colors';
 import { createStyles } from './styles';
-
-type Nav = StackNavigationProp<AuthStackParamList, 'SignIn'>;
+import { SignInNav } from '@/core/types/custom';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { CustomInput } from '@/core/components/CustomInput';
+import { PrimaryButton } from '@/core/components/PrimaryButton';
 
 export function SignInScreen() {
-  const navigation = useNavigation<Nav>();
+  const navigation = useNavigation<SignInNav>();
   const colors = useThemeColors();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
@@ -33,7 +28,7 @@ export function SignInScreen() {
   }, [phone, password]);
 
   return (
-    <Screen padded={false} statusBarStyle="dark-content">
+    <ScreenWrapper padded={false} statusBarStyle="dark-content">
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
@@ -98,6 +93,6 @@ export function SignInScreen() {
           </View>
         </View>
       </KeyboardAvoidingView>
-    </Screen>
+    </ScreenWrapper>
   );
 }

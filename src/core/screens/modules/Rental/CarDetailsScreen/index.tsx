@@ -9,9 +9,9 @@ import {
   StatusBar,
 } from 'react-native';
 import Icon from 'react-native-remix-icon';
-import Screen from '../../../../components/Screen';
 import { styles } from './style';
-import { PrimaryButton } from '../../../../components/PrimaryButton';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { PrimaryButton } from '@/core/components/PrimaryButton';
 
 export default function CarDetailsScreen({ route, navigation }: any) {
   const { car } = route.params;
@@ -21,7 +21,7 @@ export default function CarDetailsScreen({ route, navigation }: any) {
   const topInset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
 
   return (
-    <Screen padded={false} statusBarStyle="light-content">
+    <ScreenWrapper padded={false} statusBarStyle="light-content">
       {/* IMAGE SLIDER */}
       <View style={[styles.imageWrapper, { paddingTop: topInset }]}>
         <FlatList
@@ -129,6 +129,6 @@ export default function CarDetailsScreen({ route, navigation }: any) {
           <Text style={styles.bookTxt}>Book Now</Text>
         </TouchableOpacity> */}
       </View>
-    </Screen>
+    </ScreenWrapper>
   );
 }

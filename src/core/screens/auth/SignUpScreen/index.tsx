@@ -1,15 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
-import Screen from '../../../../core/components/Screen';
 import { styles } from './styles';
-import { AuthStackParamList } from '../../../types/navigation';
-import { PrimaryButton } from '../../../components/PrimaryButton';
-import { CustomInput } from '../../../components/CustomInput';
-
-type Nav = StackNavigationProp<AuthStackParamList, 'SignUp'>;
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { Nav } from '@/core/types/custom';
+import { CustomInput } from '@/core/components/CustomInput';
+import { PrimaryButton } from '@/core/components/PrimaryButton';
 
 export function SignUpScreen() {
   const navigation = useNavigation<Nav>();
@@ -30,7 +27,7 @@ export function SignUpScreen() {
   }, [name, phone, password, confirm]);
 
   return (
-    <Screen padded={false} statusBarStyle="dark-content">
+    <ScreenWrapper padded={false} statusBarStyle="dark-content">
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
@@ -100,6 +97,6 @@ export function SignUpScreen() {
           </View>
         </View>
       </KeyboardAvoidingView>
-    </Screen>
+    </ScreenWrapper>
   );
 }

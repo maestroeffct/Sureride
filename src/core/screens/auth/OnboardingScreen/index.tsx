@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useRef, useState } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import {
   FlatList,
@@ -11,21 +10,10 @@ import {
   ViewToken,
   useWindowDimensions,
 } from 'react-native';
-
-import Screen from '../../../components/Screen';
-import { themes } from '../../../theme/colors';
+import { OnboardingNav, Slide } from '@/core/types/custom';
+import { themes } from '@/core/theme/colors';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
 import { styles } from './styles';
-import { AuthStackParamList } from '../../../types/navigation';
-
-type Nav = StackNavigationProp<AuthStackParamList, 'Onboarding'>;
-
-type Slide = {
-  id: string;
-  kicker: string;
-  title: string;
-  image: any;
-  icon: string;
-};
 
 const slides: Slide[] = [
   {
@@ -33,26 +21,26 @@ const slides: Slide[] = [
     kicker: 'Mobility',
     title: 'Go Anywhere With Confidence',
     icon: '🚗',
-    image: require('../../../../assets/images/onboard1.jpg'),
+    image: require('@/assets/images/onboard1.jpg'),
   },
   {
     id: 'auto-service',
     kicker: 'Auto Service',
     title: 'Auto Care,\nDelivered to You',
     icon: '🛞',
-    image: require('../../../../assets/images/onboard2.jpg'),
+    image: require('@/assets/images/onboard2.jpg'),
   },
   {
     id: 'safety',
     kicker: 'Safety & Assurance',
     title: 'Your Safety.\nOur Priority.',
     icon: '✅',
-    image: require('../../../../assets/images/onboard3.jpg'),
+    image: require('@/assets/images/onboard3.jpg'),
   },
 ];
 
 export function OnboardingScreen() {
-  const navigation = useNavigation<Nav>();
+  const navigation = useNavigation<OnboardingNav>();
   const { width } = useWindowDimensions();
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -72,7 +60,7 @@ export function OnboardingScreen() {
   const colors = themes.light;
 
   return (
-    <Screen
+    <ScreenWrapper
       padded={false}
       statusBarStyle="dark-content"
       statusBarBackground="#ffffffff"
@@ -131,6 +119,6 @@ export function OnboardingScreen() {
           </View>
         )}
       />
-    </Screen>
+    </ScreenWrapper>
   );
 }

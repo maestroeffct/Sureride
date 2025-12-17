@@ -4,6 +4,12 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native';
+import {
+  AuthStackParamList,
+  MainStackParamList,
+  ProfileStackParamList,
+} from './navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 // CUSTOM INPUT PROPS
 export type CustomInputProps = {
@@ -50,3 +56,35 @@ export type CategoryFilterProps = {
   label: string;
   active?: boolean;
 };
+
+export type Slide = {
+  id: string;
+  kicker: string;
+  title: string;
+  image: any;
+  icon: string;
+};
+
+export type ModuleCard = {
+  key: string;
+  title: string;
+  description: string;
+  status: 'available' | 'coming-soon';
+};
+
+export type Nav = StackNavigationProp<AuthStackParamList, 'SignUp'>;
+export type SignInNav = StackNavigationProp<AuthStackParamList, 'SignIn'>;
+export type OnboardingNav = StackNavigationProp<
+  AuthStackParamList,
+  'Onboarding'
+>;
+export type CompleteProfileNav = StackNavigationProp<
+  ProfileStackParamList,
+  'CompleteProfile'
+>;
+
+export type FaceVerificationNav = StackNavigationProp<
+  ProfileStackParamList,
+  'FaceVerification'
+>;
+export type ModuleHubNav = StackNavigationProp<MainStackParamList, 'ModuleHub'>;

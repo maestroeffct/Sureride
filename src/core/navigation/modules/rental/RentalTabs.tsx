@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Feather';
 import { View } from 'react-native';
-import CarRental from '../../../screens/modules/Rental/HomeScreen';
+import CarRental from '@/core/screens/modules/Rental/HomeScreen';
+import RemixIcon from 'react-native-remix-icon';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +15,7 @@ export function CarRentalTabs() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size} />
+            <RemixIcon name="home-5-fill" color={color} size={size} />
           ),
         }}
       />
@@ -26,7 +26,7 @@ export function CarRentalTabs() {
         options={{
           tabBarLabel: 'Explore',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="search" color={color} size={size} />
+            <RemixIcon name="search-fill" color={color} size={size} />
           ),
         }}
       />
@@ -37,7 +37,7 @@ export function CarRentalTabs() {
         options={{
           tabBarLabel: 'Rentals',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="car" color={color} size={size} />
+            <RemixIcon name="car-line" color={color} size={size} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ export function CarRentalTabs() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="car" color={color} size={size} />
+            <RemixIcon name="user-3-line" color={color} size={size} />
           ),
         }}
       />

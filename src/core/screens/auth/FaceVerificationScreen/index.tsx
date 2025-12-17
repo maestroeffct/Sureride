@@ -1,19 +1,16 @@
 import React, { useMemo } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 
-import { PrimaryButton } from '../../../components/PrimaryButton';
-import { Screen } from '../../../components/Screen';
-import { useAuth } from '../../../providers/AuthProvider';
-import { useThemeColors } from '../../../theme/colors';
-import { ProfileStackParamList } from '../../../types/navigation';
 import { createStyles } from './styles';
-
-type Nav = StackNavigationProp<ProfileStackParamList, 'FaceVerification'>;
+import { useAuth } from '@/core/providers/AuthProvider';
+import { useThemeColors } from '@/core/theme/colors';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { PrimaryButton } from '@/core/components/PrimaryButton';
+import { FaceVerificationNav } from '@/core/types/custom';
 
 export function FaceVerificationScreen() {
-  const navigation = useNavigation<Nav>();
+  const navigation = useNavigation<FaceVerificationNav>();
   const { completeProfile } = useAuth();
   const colors = useThemeColors();
   const styles = useMemo(() => createStyles(colors), [colors]);
@@ -23,7 +20,7 @@ export function FaceVerificationScreen() {
   };
 
   return (
-    <Screen>
+    <ScreenWrapper>
       <View style={styles.container}>
         <Text style={styles.title}>Face verification</Text>
         <Text style={styles.subtitle}>
@@ -38,8 +35,6 @@ export function FaceVerificationScreen() {
           onPress={() => navigation.navigate('CompleteProfile')}
         />
       </View>
-    </Screen>
+    </ScreenWrapper>
   );
 }
-
-export type FaceVerificationStylesColors = ReturnType<typeof useThemeColors>;

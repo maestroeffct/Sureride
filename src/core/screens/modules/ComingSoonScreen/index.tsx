@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
 import { Text, View } from 'react-native';
 
-import { Screen } from '../../../components/Screen';
-import { useThemeColors } from '../../../theme/colors';
 import { createStyles } from './styles';
+import { useThemeColors } from '@/core/theme/colors';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
 
 export function ComingSoonScreen() {
   const colors = useThemeColors();
   const styles = useMemo(() => createStyles(colors), [colors]);
   return (
-    <Screen>
+    <ScreenWrapper>
       <View style={styles.container}>
         <Text style={styles.title}>Coming soon</Text>
         <Text style={styles.subtitle}>
@@ -17,7 +17,7 @@ export function ComingSoonScreen() {
           Car Rental launch. Switch tabs to explore other modules.
         </Text>
       </View>
-    </Screen>
+    </ScreenWrapper>
   );
 }
 

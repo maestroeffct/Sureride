@@ -1,21 +1,11 @@
 import React, { useMemo } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList, Pressable, Text, View } from 'react-native';
 
-import { Screen } from '../../../components/Screen';
-import { useThemeColors } from '../../../theme/colors';
-import { MainStackParamList } from '../../../types/navigation';
 import { createStyles } from './styles';
-
-type Nav = StackNavigationProp<MainStackParamList, 'ModuleHub'>;
-
-type ModuleCard = {
-  key: string;
-  title: string;
-  description: string;
-  status: 'available' | 'coming-soon';
-};
+import { ModuleCard, ModuleHubNav } from '@/core/types/custom';
+import { useThemeColors } from '@/core/theme/colors';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
 
 const modules: ModuleCard[] = [
   {
@@ -63,7 +53,7 @@ const modules: ModuleCard[] = [
 ];
 
 export function ModuleHubScreen() {
-  const navigation = useNavigation<Nav>();
+  const navigation = useNavigation<ModuleHubNav>();
   const colors = useThemeColors();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
@@ -74,7 +64,11 @@ export function ModuleHubScreen() {
   };
 
   return (
-    <Screen>
+    <ScreenWrapper
+      padded
+      statusBarStyle="dark-content"
+      statusBarBackground={colors.background}
+    >
       <View style={styles.header}>
         <Text style={styles.title}>Choose a module</Text>
         <Text style={styles.subtitle}>
@@ -113,7 +107,7 @@ export function ModuleHubScreen() {
         ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         contentContainerStyle={styles.list}
       />
-    </Screen>
+    </ScreenWrapper>
   );
 }
 export type ModuleHubStylesColors = ReturnType<typeof useThemeColors>;

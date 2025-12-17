@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import RemixIcon from 'react-native-remix-icon';
 
-import Screen from '../../../../components/Screen';
 import { styles } from './styles';
-import { FilterModal } from '../../../../components/Rental/FilterModal/FilterModal';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { FilterModal } from '@/core/components/Rental/FilterModal/FilterModal';
 
 export default function CarTypeListingScreen({ route, navigation }: any) {
   const { type } = route.params;
@@ -30,13 +30,13 @@ export default function CarTypeListingScreen({ route, navigation }: any) {
       doors: 4,
       transmission: 'Auto',
       fuel: 'Diesel',
-      image: require('../../../../../assets/images/rental/classic_car.jpg'),
+      image: require('@/assets/images/rental/classic_car.jpg'),
     }));
 
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <Screen padded={false}>
+    <ScreenWrapper padded={false}>
       {showFilter && <FilterModal onClose={() => setShowFilter(false)} />}
 
       <View style={[styles.container, { paddingTop: topInset }]}>
@@ -172,6 +172,6 @@ export default function CarTypeListingScreen({ route, navigation }: any) {
           )}
         />
       </View>
-    </Screen>
+    </ScreenWrapper>
   );
 }

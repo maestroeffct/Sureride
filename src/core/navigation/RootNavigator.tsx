@@ -7,6 +7,8 @@ import { ProfileCompletionNavigator } from '@/core/navigation/ProfileCompletionN
 
 import { RootStackParamList } from '@/core/types/navigation';
 import { useAuth } from '@/core/providers/AuthProvider';
+import { SplashScreen } from '@/core/screens/branding/SplashScreen';
+import { LogoScreen } from '@/core/screens/branding/LogoScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

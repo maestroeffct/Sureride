@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import {
   KeyboardAvoidingView,
@@ -9,17 +8,15 @@ import {
   View,
 } from 'react-native';
 
-import { PrimaryButton } from '../../../components/PrimaryButton';
-import { Screen } from '../../../components/Screen';
-import { useAuth } from '../../../providers/AuthProvider';
-import { useThemeColors } from '../../../theme/colors';
-import { ProfileStackParamList } from '../../../types/navigation';
 import { createStyles } from './styles';
-
-type Nav = StackNavigationProp<ProfileStackParamList, 'CompleteProfile'>;
+import { useAuth } from '@/core/providers/AuthProvider';
+import { useThemeColors } from '@/core/theme/colors';
+import ScreenWrapper from '@/core/components/ScreenWrapper';
+import { PrimaryButton } from '@/core/components/PrimaryButton';
+import { CompleteProfileNav } from '@/core/types/custom';
 
 export function CompleteProfileScreen() {
-  const navigation = useNavigation<Nav>();
+  const navigation = useNavigation<CompleteProfileNav>();
   const { completeProfile, user, logout } = useAuth();
   const [licenseNumber, setLicenseNumber] = useState('');
   const [idDocument, setIdDocument] = useState('');
@@ -36,7 +33,7 @@ export function CompleteProfileScreen() {
   };
 
   return (
-    <Screen>
+    <ScreenWrapper>
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.select({ ios: 'padding', android: undefined })}
@@ -44,7 +41,8 @@ export function CompleteProfileScreen() {
         <View style={styles.header}>
           <Text style={styles.title}>Complete your profile</Text>
           <Text style={styles.subtitle}>
-            Upload credentials to unlock rentals, mechanics, insurance, and more.
+            Upload credentials to unlock rentals, mechanics, insurance, and
+            more.
           </Text>
           {user?.email ? (
             <Text style={styles.meta}>Signed in as {user.email}</Text>
@@ -67,15 +65,14 @@ export function CompleteProfileScreen() {
             onChangeText={setIdDocument}
             style={styles.input}
           />
-          <PrimaryButton label="Continue to face verification" onPress={handleContinue} />
           <PrimaryButton
-            label="Log out"
-            variant="outline"
-            onPress={logout}
+            label="Continue to face verification"
+            onPress={handleContinue}
           />
+          <PrimaryButton label="Log out" variant="outline" onPress={logout} />
         </View>
       </KeyboardAvoidingView>
-    </Screen>
+    </ScreenWrapper>
   );
 }
 export type CompleteProfileStylesColors = ReturnType<typeof useThemeColors>;
