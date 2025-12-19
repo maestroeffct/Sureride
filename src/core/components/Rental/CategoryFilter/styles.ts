@@ -2,26 +2,32 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+    height: 38, // 🔑 fixes vertical alignment
     paddingHorizontal: 18,
-    paddingVertical: 8,
-    borderRadius: 25,
+    borderRadius: 20,
     marginRight: 10,
-    backgroundColor: '#fff',
+
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#E5E7EB',
+
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   active: {
-    backgroundColor: '#000',
-    borderColor: '#000',
+    backgroundColor: '#000000',
+    borderColor: '#000000',
   },
 
   text: {
-    color: '#444',
+    fontSize: 14, // 🔑 explicit font size
+    color: '#374151', // darker, clearer
     fontWeight: '600',
+    lineHeight: 18,
   },
 
   textActive: {
-    color: '#fff',
+    color: '#FFFFFF',
   },
 });

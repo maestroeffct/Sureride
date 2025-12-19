@@ -49,7 +49,7 @@ export type ScreenProps = {
   children: React.ReactNode;
   padded?: boolean;
   statusBarStyle?: StatusBarStyle;
-  statusBarBackground?: string;
+  disableBottomSafeArea?: boolean;
 };
 
 export type CategoryFilterProps = {

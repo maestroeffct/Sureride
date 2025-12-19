@@ -9,4 +9,5 @@ export type ThemeColors = {
   border: string;
   warning: string;
   success: string;
+  primaryColor: string;
 };

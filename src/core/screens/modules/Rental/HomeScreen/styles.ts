@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
+    backgroundColor: '#ffffff',
+  },
+
+  horizontalPadding: {
     paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
   },
 
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 5,
   },
 
   locationLabel: {
@@ -28,15 +29,19 @@ export const styles = StyleSheet.create({
   },
 
   filterRow: {
-    marginVertical: 15,
+    marginBottom: 12,
+    paddingVertical: 12,
+  },
+
+  scrollContent: {
+    paddingBottom: 20,
   },
 
   carTypeRow: {
-    marginVertical: 15,
+    marginBottom: 20,
   },
 
   sectionHeader: {
-    marginTop: 10,
     marginBottom: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -12,6 +12,7 @@ const darkColors: ThemeColors = {
   border: '#273451',
   warning: '#FF9F1C',
   success: '#2EC4B6',
+  primaryColor: '#009688',
 };
 
 const lightColors: ThemeColors = {
@@ -25,6 +26,7 @@ const lightColors: ThemeColors = {
   border: '#CBD5E1',
   warning: '#F59E0B',
   success: '#16A34A',
+  primaryColor: '#009688',
 };
 
 export const themes = {

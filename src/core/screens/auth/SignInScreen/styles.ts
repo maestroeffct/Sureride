@@ -5,6 +5,7 @@ export const createStyles = (colors: any) =>
     container: {
       flex: 1,
       paddingHorizontal: 24,
+      backgroundColor: '#FFFFFF',
     },
 
     header: {

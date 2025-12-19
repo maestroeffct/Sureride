@@ -54,9 +54,9 @@ export function SignInScreen() {
 
             <CustomInput
               label="Password"
-              placeholder="Input Password"
+              placeholder="Your Password"
               secure
-              leftIcon="lock"
+              leftIcon="lock-2-fill"
               value={password}
               onChangeText={setPassword}
             />

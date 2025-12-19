@@ -1,14 +1,34 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View } from 'react-native';
-import CarRental from '@/core/screens/modules/Rental/HomeScreen';
 import RemixIcon from 'react-native-remix-icon';
+
+import CarRental from '@/core/screens/modules/Rental/HomeScreen';
+import { useThemeColors } from '@/core/theme/colors';
 
 const Tab = createBottomTabNavigator();
 
 export function CarRentalTabs() {
+  const colors = useThemeColors();
+
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+
+        tabBarActiveTintColor: colors.primaryColor,
+        tabBarInactiveTintColor: '#9CA3AF',
+
+        tabBarStyle: {
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
+        },
+
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+        },
+      }}
+    >
       <Tab.Screen
         name="RentalHome"
         component={CarRental}
@@ -22,7 +42,7 @@ export function CarRentalTabs() {
 
       <Tab.Screen
         name="Explore"
-        component={View}
+        component={CarRental}
         options={{
           tabBarLabel: 'Explore',
           tabBarIcon: ({ color, size }) => (
@@ -33,7 +53,7 @@ export function CarRentalTabs() {
 
       <Tab.Screen
         name="MyRentals"
-        component={View}
+        component={CarRental}
         options={{
           tabBarLabel: 'Rentals',
           tabBarIcon: ({ color, size }) => (
@@ -44,7 +64,7 @@ export function CarRentalTabs() {
 
       <Tab.Screen
         name="Profile"
-        component={View}
+        component={CarRental}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (

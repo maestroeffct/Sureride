@@ -10,14 +10,13 @@ export default function ScreenWrapper({
   children,
   padded = true,
   statusBarStyle,
+  disableBottomSafeArea = false,
 }: ScreenProps) {
   const colors = useThemeColors();
 
   const barStyle: StatusBarStyle =
     statusBarStyle ??
     (colors.background === '#0B132B' ? 'light-content' : 'dark-content');
-
-  // const background = statusBarBackground ?? colors.background;
 
   return (
     <>
@@ -28,16 +27,10 @@ export default function ScreenWrapper({
       />
 
       <SafeAreaView
-        edges={['bottom']}
+        edges={disableBottomSafeArea ? [] : ['bottom']}
         style={[styles.safeArea, { backgroundColor: colors.background }]}
       >
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: colors.background },
-            padded && styles.padded,
-          ]}
-        >
+        <View style={[styles.container, padded && styles.padded]}>
           {children}
         </View>
       </SafeAreaView>

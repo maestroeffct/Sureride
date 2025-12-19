@@ -14,8 +14,13 @@ import ScreenWrapper from '@/core/components/ScreenWrapper';
 import CategoryFilter from '@/core/components/Rental/CategoryFilter';
 import CarTypeCard from '@/core/components/Rental/CarTypeCard';
 import FeaturedCarCard from '@/core/components/Rental/FeaturedCarCard';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 
 const CarRental = () => {
+  const topInset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
+  const navigation = useNavigation();
+
+  const filters = ['All', 'Sport', 'Electric', 'Classic', 'SUV', 'Luxury'];
   const carTypes = [
     {
       id: '1',
@@ -56,63 +61,86 @@ const CarRental = () => {
     },
   ];
 
-  const filters = ['All', 'Brand', 'Price', 'Body', 'More'];
-  const topInset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
-
   return (
-    <ScreenWrapper padded={false} statusBarStyle="dark-content">
-      <ScrollView
-        style={[styles.container, { paddingTop: topInset }]}
-        showsVerticalScrollIndicator={false}
-      >
+    <ScreenWrapper
+      padded={false}
+      statusBarStyle="dark-content"
+      disableBottomSafeArea
+    >
+      <View style={styles.screen}>
         {/* HEADER */}
-        <View style={styles.header}>
+        <View
+          style={[
+            styles.horizontalPadding,
+            styles.header,
+            { paddingTop: topInset + 10 },
+          ]}
+        >
           <View>
             <Text style={styles.locationLabel}>Your Location</Text>
             <Text style={styles.locationValue}>
               Shoprite, Oda Road <Icon name="user-location-fill" size={16} />
             </Text>
           </View>
-          <Icon name="menu-fill" size={26} />
+          <Icon
+            name="menu-fill"
+            size={26}
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+          />
         </View>
 
-        {/* FILTERS → FlatList */}
+        {/* FILTERS */}
         <FlatList
           data={filters}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
           style={styles.filterRow}
-          contentContainerStyle={{ paddingRight: 10 }}
+          contentContainerStyle={[
+            styles.horizontalPadding,
+            { paddingRight: 10 },
+          ]}
           renderItem={({ item, index }) => (
             <CategoryFilter label={item} active={index === 0} />
           )}
         />
 
-        {/* CAR TYPES → FlatList */}
-        <FlatList
-          data={carTypes}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={item => item.id}
-          style={styles.carTypeRow}
-          contentContainerStyle={{ paddingRight: 10 }}
-          renderItem={({ item }) => <CarTypeCard item={item} />}
-        />
+        {/* SCROLLABLE CONTENT */}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.horizontalPadding,
+            styles.scrollContent,
+          ]}
+        >
+          {/* CAR TYPES */}
+          <FlatList
+            data={carTypes}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ paddingRight: 10 }}
+            style={styles.carTypeRow}
+            renderItem={({ item }) => <CarTypeCard item={item} />}
+          />
 
-        {/* Featured Section */}
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Featured cars</Text>
-          <Text style={styles.sectionCount}>21 available</Text>
-        </View>
+          {/* FEATURED */}
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Featured cars</Text>
+            <Text style={styles.sectionCount}>21 available</Text>
+          </View>
 
-        {/* FEATURED CARS (map stays — vertical list is short) */}
-        {featuredCars.map(car => (
-          <FeaturedCarCard key={car.id} item={car} />
-        ))}
+          <FlatList
+            data={featuredCars}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => <FeaturedCarCard item={item} />}
+            scrollEnabled={false} // 🔑 important since parent ScrollView scrolls
+            showsVerticalScrollIndicator={false}
+          />
 
-        <View style={{ height: 20 }} />
-      </ScrollView>
+          <View style={{ height: 10 }} />
+        </ScrollView>
+      </View>
     </ScreenWrapper>
   );
 };
